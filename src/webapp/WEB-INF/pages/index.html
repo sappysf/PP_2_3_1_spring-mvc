@@ -1,15 +1,60 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title></title>
+    <title>USERS</title>
 </head>
 <body>
-<div>
-    <th:block th:each="msg : ${messages}">
-        <h1 th:text="${msg}"></h1>
-    </th:block>
-</div>
+<h1>Users</h1>
+<table>
+    <tr>
+        <th>id</th>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Email</th>
+    </tr>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.getId()}"></td>
+        <td th:text="${user.getName()}"></td>
+        <td th:text="${user.getSurname()}"></td>
+        <td th:text="${user.getDepartment()}"></td>
+    </tr>
+</table>
+
+<form method="post" action="/add">
+    <label>
+        <input type="text" name="name" placeholder="Name">
+    </label>
+    <label>
+        <input type="text" name="surname" placeholder="Surname">
+    </label>
+    <label>
+        <input type="text" name="department" placeholder="Department">
+    </label>
+    <input type="submit" value="Add User">
+</form>
+
+<form method="post" action="/update">
+    <label>
+        <input type="number" name="id" placeholder="User ID">
+    </label>
+    <label>
+        <input type="text" name="name" placeholder="New Name">
+    </label>
+    <label>
+        <input type="text" name="surname" placeholder="New Surname">
+    </label>
+    <label>
+        <input type="text" name="department" placeholder="New Department">
+    </label>
+    <input type="submit" value="Update User">
+</form>
+
+<form method="post" action="/delete">
+    <label>
+        <input type="number" name="id" placeholder="User ID">
+    </label>
+    <input type="submit" value="Delete User">
+</form>
+
 </body>
 </html>
